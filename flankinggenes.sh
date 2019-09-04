@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ids='./IDblast.txt'
-while read line; #iterando sobre cada línea
+ids='./IDblast.txt' #This file is created by the python script and then it is deleted. It can be any file with protein IDs.
+while read line; # loopig through each line
 do
 	
 	if [[ $line =~ ^WP ]]
