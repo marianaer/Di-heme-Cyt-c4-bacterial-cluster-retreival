@@ -13,16 +13,21 @@ import os
 from path import Path
 from collections import defaultdict
 
-
+##################################
 # Signing in to NCBI
+##################################
+
 Entrez.email = "mescobar@gmail.com" 
 
+# This part is editable for any protein of interest
 gen="Acidithiobacillus sp."
 query="AVK42812"
 protquery=gen+"_"+query
 
+############################################################################################################
+# Running BlastP. Excluiding Archaeobacteria, metagenomes and uncultured samples in Non Redundant database 
+############################################################################################################
 
-# Running BlastP. Excluiding Archaeobacteria, metagenomes and uncultured samples in Non Redundant database.
 blast_handle = NCBIWWW.qblast('blastp', 'nr', sequence=query, entrez_query='all [filter] NOT(environmental samples[organism] OR metagenomes[orgn] OR txid2157[organism] OR txid119977[organism])', hitlist_size=100)
 
 
@@ -48,8 +53,10 @@ res[0]['Hit Protein name']="Cyc 1"
 df=pd.DataFrame(res)
 df['Hit ID'].to_csv('IDblast.txt',  sep=' ', index=False, header=False)
 
-
+##############################################
 # Shell script for fetching adjacent proteins:
+##############################################
+
 subprocess.call("./flankinggenes.sh")
 
 # Importing adjacent proteins
@@ -131,8 +138,10 @@ with open("CDDSearch.txt", "w") as out_handle:
    
 
 
+#######################################################################
+# Shell script for fetching conserved domains through perl script:
+#######################################################################
 
-# Shell script for fetching adjacent proteins through perl script:
 subprocess.run("./bwrpsb.pl < CDDSearch.txt > hitdata.txt", shell=True)
 
 
