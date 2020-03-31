@@ -3,6 +3,7 @@
 
 # In[2]:
 
+## ITERATIVE BLAST SEARCH
 
 from Bio import Entrez
 from Bio import SeqIO
