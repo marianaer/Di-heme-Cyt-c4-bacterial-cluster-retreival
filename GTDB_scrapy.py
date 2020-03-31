@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# Scrapping through GTDB for genome completeness
+
+
 # In[1]:
 
 
